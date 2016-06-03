@@ -1,4 +1,4 @@
-
+'''
 def add(a, b):
      return a+b
 
@@ -11,5 +11,13 @@ except:
 finally:
      print '3'
      file_object.close()
+
+'''
+import pickle
+f2 = open("inverted_dict", "rb")
+load_list = pickle.load(f2)
+f2.close()
+# print
+print load_list
 
 
