@@ -4,7 +4,6 @@
 import os
 import glob
 import math
-import dict_op
 
 """
 file_path = []
