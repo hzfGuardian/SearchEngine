@@ -37,10 +37,46 @@ class Dictionary:
 
     def serchaword(self, word):
         result = []
-        if word not in self.dict_in:
-            return result
         if (len(word.split(' ')) < 2):
+            if word not in self.dict_in:
+                return result
             for myitem in self.dict_in[word]:
                 result.append(myitem[0])
             return result
-        #else:
+        else:
+            word_list=word.split(' ')
+            index = 0
+            temp = []
+            result = []
+            for word in word_list:
+                if word not in self.dict_in:
+                    return result
+
+            for word in word_list:
+                if (index==0):
+                    temp = self.dict_in[word]
+                    index = index + 1
+                    continue
+                temp2 = self.dict_in[word]
+                result_temp = []
+                flag=0
+                for olditem in temp:
+                    for newitem in temp2:
+                        if (olditem[0] == newitem[0]):
+                            for inta in olditem[1]:
+                                for intb in newitem[1]:
+                                    if(intb-inta==index):
+                                        result_temp.append(newitem[0])
+                                        break
+                                else:
+                                    continue
+                                break
+                            else:
+                                continue
+                            break
+                if(index == 1):
+                    result = result_temp
+                else:
+                    result = list(set(result).intersection(set(result_temp)))
+                index = index + 1
+            return result
