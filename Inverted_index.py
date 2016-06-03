@@ -1,11 +1,11 @@
 import os
 import glob
-import dict_op
 import pickle
+from dict_op import *
 
 Dictionaries = {}
 
-filecount=0
+filecount = 0
 for fn in glob.glob('Reuters/' + os.sep + '*.html'):
      #print fn
      try:
@@ -25,9 +25,9 @@ for fn in glob.glob('Reuters/' + os.sep + '*.html'):
                word = word.rstrip("/'")
                word = word.rstrip('/"')
                word = word.strip("&lt;")
-               wordcount = wordcount + 1
                if (word != ""):
-                    Dictionaries = dict_op.addDict(Dictionaries, word, filecount)
+                    Dictionaries = addDict(Dictionaries, word, filecount, wordcount)
+                    wordcount = wordcount + 1
           #print alist
           filecount = filecount + 1;
           #print Dictionaries
@@ -36,6 +36,7 @@ for fn in glob.glob('Reuters/' + os.sep + '*.html'):
      finally:
           file_object.close()
 #print Dictionaries
+Dictionaries = sorted(Dictionaries.iteritems(), key=lambda asd: asd[0])
 dict_file = open("inverted_dict", "wb")
 pickle.dump(Dictionaries, dict_file)
 dict_file.close()
