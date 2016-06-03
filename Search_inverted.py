@@ -1,6 +1,7 @@
 from dictionary import *
 
-mydicts = Dictionary("inverted_dict")
+mydicts = Dictionary()
+mydicts.read("inverted_dict")
 
 word_and_list = {"a", "b"}
 word_or_list = {"sb", "apple"}
