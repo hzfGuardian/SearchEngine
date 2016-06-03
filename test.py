@@ -1,8 +1,15 @@
 
+def add(a, b):
+     return a+b
 
-file_object = open('1.html')
 try:
-     all_the_text = file_object.read();
-     print all_the_text;
+     file_object = open('2.html')
+     all_the_text = file_object.read()
+     print all_the_text
+except:
+     print '2'
 finally:
-     file_object.close();
+     print '3'
+     file_object.close()
+
+
