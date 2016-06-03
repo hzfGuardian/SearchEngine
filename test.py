@@ -1,15 +1,16 @@
 
-def add(a, b):
-     return a+b
+from dictionary import *
 
-try:
-     file_object = open('2.html')
-     all_the_text = file_object.read()
-     print all_the_text
-except:
-     print '2'
-finally:
-     print '3'
-     file_object.close()
+mydicts = Dictionary()
 
+mydicts.addItem('a', 1, 3)
 
+print mydicts.dict_in
+
+mydicts.addItem('a', 1, 2)
+
+print mydicts.dict_in
+
+mydicts.addItem('a', 2, 2)
+
+print mydicts.dict_in
