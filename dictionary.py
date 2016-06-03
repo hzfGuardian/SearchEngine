@@ -1,18 +1,23 @@
 import pickle
 
-
 # inverted index table
+
 
 class Dictionary:
     dict_in = {}
-    file_name = ""
 
     # load inverted index from disk
     def read(self, file_name):
-        self.file_name = file_name
         try:
             fin = open(file_name, "rb")
             self.dict_in = pickle.load(fin)
+        finally:
+            fin.close()
+
+    def write(self, file_name):
+        try:
+            fin = open(file_name, "wb")
+            pickle.dump(self.dict_in, file_name)
         finally:
             fin.close()
 
@@ -30,3 +35,12 @@ class Dictionary:
             new_dict = {item: [[doc_id, [pos]]]}
             self.dict_in.update(new_dict)
 
+    def serchaword(self, word):
+        result = []
+        if word not in self.dict_in:
+            return result
+        if (len(word.split(' ')) < 2):
+            for myitem in self.dict_in[word]:
+                result.append(myitem[0])
+            return result
+        #else:
