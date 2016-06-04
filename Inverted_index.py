@@ -7,6 +7,8 @@ filecount = 0
 stopset = {"is", "a", "he", "she", "and", "are", "am", "of", "for", "were", "in", "it", "them", "its", "would", "share", "The"}
 for fn in glob.glob('Reuters/' + os.sep + '*.html'):
      #print fn
+     if filecount > 5:
+         break
      try:
           file_object = open(fn)
           all_the_text = file_object.read()
@@ -35,7 +37,9 @@ for fn in glob.glob('Reuters/' + os.sep + '*.html'):
      finally:
           file_object.close()
 #print Dictionaries
-#mydicts.sortDict()
+
+mydicts.dict_in = sorted(mydicts.dict_in.iteritems(), key=lambda asd: asd[0])
+
 #mydicts.write("inverted_dict")
 #mydicts.addItem('a', 1, 3)
 word_and_list = {"a", "b"}
