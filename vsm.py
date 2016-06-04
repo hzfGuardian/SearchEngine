@@ -1,20 +1,83 @@
-# import numpy as np
+
+from query import *
+import math
+import numpy as np
 # import scipy as sp
 
-import os
-import glob
-import math
 
-"""
-file_path = []
+class VSM:
 
-for fn in glob.glob('Reuters/' + os.sep + '*.html'):
-    file_path += [fn]
+    matrix = np.zeros
+    dic = {}
+    sort_dic = {}   # record the sort id for each item
 
-print len(file_path)
-"""
+    def __init__(self, docs, dicts):
+        self.dic = dicts
+        self.matrix = np.zeros((len(dicts), docs))
+        dicts = sorted(dicts.iteritems(), key=lambda asd: asd[0])
 
-# for root, dirs, files in os.walk('Reuters/'):
-#    print("Root = ", root, "dirs = ", dirs, "files = ", files)
+        # create index
+        sort_dic = self.createSortedDict(dicts)
+
+        # tf-idf
+        for i in range(0, len(dicts)):  # for each item
+            idf = math.log10(1.0 * docs / len(dicts[i]))  # calculate idf for each item
+
+            for node in dicts[i][1]:
+                doc_id = node[0]  # get docID
+                tf = len(node[1])
+                if tf > 0:
+                    self.matrix[i, doc_id] = (1 + math.log10(tf * 1.0)) * idf
+                else:
+                    self.matrix[i, doc_id] = 0
+        return
+
+    def createSortedDict(self, dicts):
+        dic = {}
+
+        # get all keys of dicts
+        tmp_list = dicts.keys()
+
+        # sort
+        tmp_list.sort()
+
+        for i in range(0, len(tmp_list)):
+            dic[tmp_list[i]] = i
+
+        # return the dict in form of {'apple': 0, 'boy': 1 ...}
+        return dic
+
+    def printMatrix(self):
+        print self.matrix
+
+    # transfer Query Object to query vector
+    def qryVector(self, query):
+        vq = np.zeros(len(query.and_items))
+        for item in query.and_items:
+            if item in self.sort_dic:
+                row_id = self.sort_dic[item]
+                vq[row_id] = 1
+        return vq
+
+    def cosineScore(self, query, doc_id):
+        vq = self.qryVector(query)
+        vd = self.matrix[:, doc_id]
+        return np.inner(vq, vd)
+
+d = {'apple': [[2, [1, 2, 6, 7]], [0, [3, 4]]], 'book': [[1, [2]]]}
+model = VSM(3, d)
+
+print model.createSortedDict(d)
+
+dic = {'r': [3, [4]] , 'b': [2, [1, 2, 3]] , 'c': [1, [12, 11, 14, 19]]}
+
+# dic = sorted(dic.iteritems(), key=lambda asd: asd[0])
+# print dic['r']
+l = dic.keys()
+l.sort()
+print l
+if 'e' in l:
+    print l.index('e')
+
 
 
