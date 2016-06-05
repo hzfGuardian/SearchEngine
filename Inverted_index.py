@@ -36,12 +36,14 @@ for fn in glob.glob('Reuters/' + os.sep + '*.html'):
           print "Something error!"
      finally:
           file_object.close()
-#print Dictionaries
+# print Dictionaries
 
-mydicts.dict_in = sorted(mydicts.dict_in.iteritems(), key=lambda asd: asd[0])
 
-#mydicts.write("inverted_dict")
-#mydicts.addItem('a', 1, 3)
+
+# mydicts.dict_in = sorted(mydicts.dict_in.iteritems(), key=lambda asd: asd[0])
+
+# mydicts.write("inverted_dict")
+# mydicts.addItem('a', 1, 3)
 word_and_list = {"a", "b"}
 word_or_list = {"sb", "apple"}
 word_not_list = {"add", "b"}
