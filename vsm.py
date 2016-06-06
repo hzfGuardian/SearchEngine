@@ -17,7 +17,7 @@ class VSM:
         dicts = sorted(dicts.iteritems(), key=lambda asd: asd[0])
 
         # create index
-        sort_dic = self.createSortedDict(dicts)
+        self.sort_dic = self.createSortedDict(self.dic)
 
         # tf-idf
         for i in range(0, len(dicts)):  # for each item
@@ -52,7 +52,7 @@ class VSM:
 
     # transfer Query Object to query vector
     def qryVector(self, query):
-        vq = np.zeros(len(query.and_items))
+        vq = np.zeros(len(self.dic))
         for item in query.and_items:
             if item in self.sort_dic:
                 row_id = self.sort_dic[item]
@@ -62,22 +62,12 @@ class VSM:
     def cosineScore(self, query, doc_id):
         vq = self.qryVector(query)
         vd = self.matrix[:, doc_id]
-        return np.inner(vq, vd)
+        if np.linalg.norm(vq) == 0 or np.linalg.norm(vd, 2) == 0:
+            return 0
+        else:
+            return np.inner(vq, vd) / (np.linalg.norm(vq) * np.linalg.norm(vd, 2))
 
-d = {'apple': [[2, [1, 2, 6, 7]], [0, [3, 4]]], 'book': [[1, [2]]]}
-model = VSM(3, d)
 
-print model.createSortedDict(d)
-
-dic = {'r': [3, [4]] , 'b': [2, [1, 2, 3]] , 'c': [1, [12, 11, 14, 19]]}
-
-# dic = sorted(dic.iteritems(), key=lambda asd: asd[0])
-# print dic['r']
-l = dic.keys()
-l.sort()
-print l
-if 'e' in l:
-    print l.index('e')
 
 
 
