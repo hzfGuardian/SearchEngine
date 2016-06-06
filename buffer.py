@@ -4,4 +4,4 @@ import dictionary
 from dictionary import *
 mydicts = Dictionary()
 mydicts.read("test.txt")
-a=1
+print (mydicts.search_invert(["apple"], [], []) )

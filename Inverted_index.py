@@ -7,8 +7,8 @@ filecount = 0
 stopset = {"is", "a", "he", "she", "and", "are", "am", "of", "for", "were", "in", "it", "them", "its", "would", "share",
            "The", "an", "him", "her", "what", "be", "now", "good", "I'm", "No", "not", "It", "TO", "about", "also",
            "as", "at", "been", "but", "by", "from", "had", "has", "have", "last", "on", "one", "or", "said", "that",
-           "the", "this", "to", "up", "vs", "was", "which", "will", "with"}
-deleteset= {'\n', '\r', '>', '<', ')', '(', '\"', "\'", '&lt', '-', '+', '@', '%', '^', '*', ':'}
+           "the", "this", "to", "up", "vs", "was", "which", "will", "with", "I"}
+deleteset= {'\n', '\r', '>', '<', ')', '(', '\"', "\'", '&lt', '-', '+', '@', '%', '^', '*', ':', ';', '&amp'}
 for fn in glob.glob('Reuters/' + os.sep + '*.html'):
      #print fn
      #if filecount > 10:
@@ -36,7 +36,7 @@ for fn in glob.glob('Reuters/' + os.sep + '*.html'):
           print "Something error!"
      finally:
           file_object.close()
-
+mydicts.count=filecount
 #print Dictionaries
 #mydicts.dict_in = sorted(mydicts.dict_in.iteritems(), key=lambda asd: asd[0])
 #mydicts.write("inverted_dict")

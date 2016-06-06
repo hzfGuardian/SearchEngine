@@ -21,8 +21,8 @@ class Dictionary:
                 word = word.rstrip("\r")
                 len_file = int(fin.readline())
                 word_list = []
-                if(len_file > 1000):
-                   print("\""+word+"\",")
+                #if(len_file > 1000):
+                  # print("\""+word+"\",")
                 for j in range(0, len_file):
                     pos_list= []
                     file_id = int(fin.readline())
