@@ -11,8 +11,8 @@ stopset = {"is", "a", "he", "she", "and", "are", "am", "of", "for", "were", "in"
 deleteset= {'\n', '\r', '>', '<', ')', '(', '\"', "\'", '&lt', '-', '+', '@', '%', '^', '*', ':', ';', '&amp'}
 for fn in glob.glob('Reuters/' + os.sep + '*.html'):
      #print fn
-     #if filecount > 10:
-      #   break
+     if filecount > 10:
+         break
      try:
           file_object = open(fn)
           all_the_text = file_object.read()
@@ -36,7 +36,13 @@ for fn in glob.glob('Reuters/' + os.sep + '*.html'):
           print "Something error!"
      finally:
           file_object.close()
-mydicts.count=filecount
+
+
+print filecount
+print mydicts.count
+mydicts.count = filecount
+print mydicts.count
+print filecount
 #print Dictionaries
 #mydicts.dict_in = sorted(mydicts.dict_in.iteritems(), key=lambda asd: asd[0])
 #mydicts.write("inverted_dict")
@@ -49,6 +55,6 @@ for item in dic_list:
     b = item[1]
     c= len(b)
 '''
-mydicts.write("test.txt")
+#mydicts.write_compress("test1", "test2")
 #mydicts2 = Dictionary()
 #mydicts2.read("test.txt")

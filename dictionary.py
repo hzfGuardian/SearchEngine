@@ -62,18 +62,47 @@ class Dictionary:
         finally:
             fout.close()
 
-    def mychange(self,number):
-        return 1
+    def mycompress(self, number):
+        str = ''
+        flag = 0
+        if number == 0:
+            return chr(128)
+        while number != 0:
+            if flag==0:
+                str = chr(number & 127+128) + str
+            else:
+                str = chr(number & 127) + str
+            number = number >> 7
+        return str
 
     def write_compress(self, word_file_name, index_file_name):
         try:
             wordfile = open(word_file_name, "wb")
             indexfile = open(index_file_name, "wb")
             dic_list = self.sortdict()
-            wordfile.write(self.mychange(len(dic_list)))
+            wordfile.write(self.mycompress(len(dic_list)))
+            wordlen = 0
+            oldlen = 0
+            for item in dic_list:
+                indexfile.write(item[0]+"@")
+                #wordfile.write()
+                oldlen = wordlen
+                wordlen = len(item[0]) + 1
+                wordfile.write(self.mycompress(oldlen))
+                wordfile.write(self.mycompress(len(item[1])))
+                for docid in item[1]:
+                    wordfile.write(self.mycompress(docid[0]))
+                    wordfile.write(self.mycompress(len(docid[1])))
+                    for pos in docid[1]:
+                        wordfile.write(self.mycompress(pos))
+        finally:
+            wordfile.close()
+            indexfile.close()
 
-
-
+    def read_compress(self, word_file_name, index_file_name):
+        try:
+            wordfile = open(word_file_name, "rb")
+            indexfile = open(index_file_name, "rb")
 
         finally:
             wordfile.close()
