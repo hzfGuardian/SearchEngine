@@ -68,33 +68,46 @@ class Dictionary:
         if number == 0:
             return chr(128)
         while number != 0:
-            if flag==0:
-                str = chr(number & 127+128) + str
+            if flag == 0:
+                str = chr((number & 127)+128) + str
+                flag = 1
             else:
                 str = chr(number & 127) + str
             number = number >> 7
         return str
+
+    def mydecompress(self, file):
+        ans = 0
+        while True:
+            ch = file.read(1)
+            a = ord(ch)
+            ans = ans << 7
+            ans = ans + (a & 127)
+            if (a & 128) == 128:
+                break
+        return ans
+
 
     def write_compress(self, word_file_name, index_file_name):
         try:
             wordfile = open(word_file_name, "wb")
             indexfile = open(index_file_name, "wb")
             dic_list = self.sortdict()
-            wordfile.write(self.mycompress(len(dic_list)))
-            wordlen = 0
-            oldlen = 0
+            indexfile.write(self.mycompress(len(dic_list)))
+            # wordlen = 0
+            # oldlen = 0
             for item in dic_list:
-                indexfile.write(item[0]+"@")
-                #wordfile.write()
-                oldlen = wordlen
-                wordlen = len(item[0]) + 1
-                wordfile.write(self.mycompress(oldlen))
-                wordfile.write(self.mycompress(len(item[1])))
+                wordfile.write(item[0]+"@")
+                # wordfile.write()
+                # oldlen = wordlen
+                # wordlen = len(item[0]) + 1
+                # wordfile.write(self.mycompress(oldlen))
+                indexfile.write(self.mycompress(len(item[1])))
                 for docid in item[1]:
-                    wordfile.write(self.mycompress(docid[0]))
-                    wordfile.write(self.mycompress(len(docid[1])))
+                    indexfile.write(self.mycompress(docid[0]))
+                    indexfile.write(self.mycompress(len(docid[1])))
                     for pos in docid[1]:
-                        wordfile.write(self.mycompress(pos))
+                        indexfile.write(self.mycompress(pos))
         finally:
             wordfile.close()
             indexfile.close()
@@ -103,6 +116,25 @@ class Dictionary:
         try:
             wordfile = open(word_file_name, "rb")
             indexfile = open(index_file_name, "rb")
+            all_word = wordfile.read()
+            word_list = all_word.split('@')
+            num = self.mydecompress(indexfile)
+            if num != (len(word_list)-1): #jian qu zuihou yige word
+                print("File ERROR!")
+                return
+            self.count = num
+            for i in range(0, num):
+                id_list = []
+                file_len = self.mydecompress(indexfile)
+                for j in range(0, file_len):
+                    pos_list = []
+                    file_id = self.mydecompress(indexfile)
+                    len_pos = self.mydecompress(indexfile)
+                    for k in range(0, len_pos):
+                        a = self.mydecompress(indexfile)
+                        pos_list.append(a)
+                    id_list.append([file_id, pos_list])
+                self.dict_in[word_list[i]] = id_list
 
         finally:
             wordfile.close()
