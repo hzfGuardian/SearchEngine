@@ -9,7 +9,7 @@ stopset = {"is", "a", "he", "she", "and", "are", "am", "of", "for", "were", "in"
            "as", "at", "been", "but", "by", "from", "had", "has", "have", "last", "on", "one", "or", "said", "that",
            "the", "this", "to", "up", "vs", "was", "which", "will", "with", "I"}
 deleteset= {'\n', '\r', '>', '<', ')', '(', '\"', "\'", '&lt', '-', '+', '@', '%', '^', '*', ':', ';', '&amp'}
-for fn in glob.glob('Reuters/' + os.sep + '*.html'):
+for fn in glob.glob('../Reuters/' + os.sep + '*.html'):
      #print fn
      try:
           file_object = open(fn)

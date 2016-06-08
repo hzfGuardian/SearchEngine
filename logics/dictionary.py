@@ -119,7 +119,7 @@ class Dictionary:
             all_word = wordfile.read()
             word_list = all_word.split('@')
             num = self.mydecompress(indexfile)
-            if num != (len(word_list)-1): #jian qu zuihou yige word
+            if num != (len(word_list)-1):  # jian qu zuihou yige word
                 print("File ERROR!")
                 return
             self.count = num
@@ -135,7 +135,8 @@ class Dictionary:
                         pos_list.append(a)
                     id_list.append([file_id, pos_list])
                 self.dict_in[word_list[i]] = id_list
-
+        except:
+            print "read compress error"
         finally:
             wordfile.close()
             indexfile.close()

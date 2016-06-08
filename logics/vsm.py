@@ -68,6 +68,8 @@ class VSM:
             return np.inner(vq, vd) / (np.linalg.norm(vq) * np.linalg.norm(vd, 2))
 
 
+    def getTopK(self, k):
+
 
 
 
