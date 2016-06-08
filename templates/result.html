@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" /> 
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<title>搜索结果</title>
+<link href="http://v9.demo.phpcms.cn/statics/css/search.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://v9.demo.phpcms.cn/statics/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://v9.demo.phpcms.cn/statics/js/cookie.js"></script>
+<script type="text/javascript" src="http://v9.demo.phpcms.cn/statics/js/search_common.js"></script>
+</head>
+<body>	<div class="clr sr_body sr_list">
+    	<div class="sr_main">
+        	<div class="sr_head">
+            	<div class="r">
+                    <script type="text/javascript"></script>
+                </div>
+            </div>
+
+            <div class="wrap sr_logo">
+            	<a href="/media/images/zju.png" class="l"><img src="/media/images/zju.png" width="230" height="158" /></a>
+                <div class="l">
+                	<div class="sr_frm_box">
+						<form name="search" type="get">
+                        <div class="sr_frmipt">
+
+						<input type="text" name="q" class="ipt" id="q" value="搜索" action="/search/" method="get" align = center>
+						<div class="sp" id="aca">▼</div><input type="submit" class="ss_btn" value="搜 索"></div>
+						</form>
+						<div id="sr_infos" class="wrap sr_infoul">
+						</div>
+                    </div>
+                    <div class="jg">获得约 0 条结果 （用时0.00 秒）</div>
+                </div>
+            </div>
+            <div class="brd1s"></div>
+            <div class="wrap sr_lists">
+            	<div class="l">
+                	<div>
+                    	<span>网页结果</span>
+                        <ul>
+										<li><a href="?m=search&c=index&a=init&typeid=53&q=%CB%D1%CB%F7&siteid=1&time=all"  class="ac">征婚</a>
+						</li>
+										<li><a href="?m=search&c=index&a=init&typeid=1&q=%CB%D1%CB%F7&siteid=1&time=all" >新闻</a>
+						</li>
+										<li><a href="?m=search&c=index&a=init&typeid=3&q=%CB%D1%CB%F7&siteid=1&time=all" >图片</a>
+						</li>
+										<li><a href="?m=search&c=index&a=init&typeid=2&q=%CB%D1%CB%F7&siteid=1&time=all" >下载</a>
+						</li>
+										<li><a href="?m=search&c=index&a=init&typeid=52&q=%CB%D1%CB%F7&siteid=1&time=all" >专题</a>
+						</li>
+				                         </ul>
+                    </div>
+                    <div>
+                    	<span>按时间搜索</span>
+                        <ul>
+                            <li><a href="?m=search&c=index&a=init&typeid=53&q=%CB%D1%CB%F7&siteid=1&time=all" class="ac">全部时间</a></li>
+                            <li><a href="?m=search&c=index&a=init&typeid=53&q=%CB%D1%CB%F7&siteid=1&time=day" >一天内</a></li>
+                            <li><a href="?m=search&c=index&a=init&typeid=53&q=%CB%D1%CB%F7&siteid=1&time=week" >一周内</a></li>
+                            <li><a href="?m=search&c=index&a=init&typeid=53&q=%CB%D1%CB%F7&siteid=1&time=month" >一月内</a></li>
+                            <li><a href="?m=search&c=index&a=init&typeid=53&q=%CB%D1%CB%F7&siteid=1&time=year" >一年内</a></li>
+                        </ul>
+                    </div>
+                    <div class="bgno">
+                    	<span>搜索历史</span>
+                        <ul id='history_ul'>
+                        </ul>
+                    </div>
+                </div>
+                <div class="c wrap">
+                	<ul class="wrap">
+						{% if matches %}
+                            <ul>
+                            {% for match in matches %}
+                                <hr />
+                                <div style="margin-bottom: 20px">
+                                    <p>Summary is: {{ summary }} </p>
+                                    <a href="{{match}}">The url</a>
+                                </div>
+                            {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p> Sorry, Can't find any results! </p>
+                        {% endif %}
+                    </ul>
+                    <div id="pages" class="text-c mg_t20"></div>
+					                </div>
+            </div>
+      </div>
+<script type="text/javascript" src="http://v9.demo.phpcms.cn/statics/js/search_history.js"></script>
+<div class="sr_footer">	  
+<a href="http://v9.demo.phpcms.cn/html/about/aboutus/" target="_blank">关于我们</a> |  
+<a href="http://v9.demo.phpcms.cn/html/about/contactus/" target="_blank">联系方式</a> |  
+<a href="http://v9.demo.phpcms.cn/index.php?m=content&c=index&a=lists&catid=4" target="_blank">版权声明</a> |  
+<a href="http://v9.demo.phpcms.cn/html/about/hr/" target="_blank">招聘信息</a> |  
+<a href="http://v9.demo.phpcms.cn/index.php?m=link" target="_blank">友情链接</a>
+<p class="cp">Powered by <strong><a href="http://www.grandcloud.cn/product/video" target="_blank">盛大视频云</a></strong> &copy; 2016 <img src="http://v9.demo.phpcms.cn/statics/images/copyright.gif"/>
+</p></div>
+      </div>
+    </div>
+<!--[if IE 6]>
+<script type="text/javascript" src="http://v9.demo.phpcms.cn/statics/js/nsz.js"></script>
+<script type="text/javascript">
+	nsz.fix('.sr_logo img');
+</script>
+<![endif]-->
+</body>
+</html>

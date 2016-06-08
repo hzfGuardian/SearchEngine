@@ -11,7 +11,7 @@ def search_form(request):
 
 
 # 接收请求数据
-def search(request):
+def search1(request):
 
     request.encoding = 'utf-8'
 
@@ -26,3 +26,21 @@ def search(request):
         message = '你提交了空表单'
 
     return HttpResponse(message)
+
+
+def show_details(request):
+    return render_to_response('15920.html')
+
+
+def search(request):
+
+    total = 0
+    t = 0
+    s = 0
+    res = ['15920.html', '15920.html', '15920.html']
+
+    if 'q' in request.GET and request.GET['q']:
+        return render_to_response('result.html',
+                                  {'total_found': total, 'use_time': t, 'summary': s, 'matches': res})
+    else:
+        return render_to_response('single_search.html', {'error': True})
