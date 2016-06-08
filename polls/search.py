@@ -4,7 +4,6 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from logics.buffer import f
 
-
 # 表单
 def search_form(request):
     return render_to_response('single_search.html')
