@@ -221,6 +221,8 @@ class Dictionary:
         Resule_id = []
         count_op = 0
         for word_and in word_and_list:
+            if word_and == "":
+                continue
             if count_op == 0:
                 Resule_id = self.serchaword(word_and)  # wait for new things
             else:
@@ -230,6 +232,8 @@ class Dictionary:
             count_op = count_op + 1
 
         for word_or in word_or_list:
+            if word_or == "":
+                continue
             if count_op == 0:
                 Resule_id = self.serchaword(word_or)  # wait for new things
             else:
@@ -237,6 +241,8 @@ class Dictionary:
             count_op = count_op + 1
 
         for word_not in word_not_list:
+            if word_not == "":
+                continue
             if count_op != 0:
                 Resule_id = list(set(Resule_id).difference(set(self.serchaword(word_not))))  # must change
                 count_op = count_op + 1

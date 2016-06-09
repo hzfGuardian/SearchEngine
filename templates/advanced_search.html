@@ -1,57 +1,106 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
-<html>
+
+<html lang="en-us" >
 <head>
-<title> Flat Buttons Submit Forms :: w3layouts</title>
-<link href="/media/css/style2.css" rel='stylesheet' type='text/css' />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>高级搜索</title>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/static/admin/css/login.css" />
+
+<link href="/media/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+<!-- Custom Theme files -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Flat Buttons Submit Forms,Button hover effects,Tool tips, ancher link hover effects,Elements"./>
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--webfonts-->
-	<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
-<!--//webfonts-->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Flat Search Box Responsive, Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<!--Google Fonts-->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+
+<meta name="robots" content="NONE,NOARCHIVE" />
 </head>
-<body>
-<!--start-main-->
- 	<div class="submit-forms">
- 		<form class="blue">
-            <input type="submit" value="Submit">
-			<input type="text" size="30px"  value="你们啊，naive！" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '你们啊，naive！';}">
 
-		 </form>
-		 <form class="green">
-             <input type="submit" value="Submit">
-			<input type="text" size="30px"  value="你们啊，naive！" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '你们啊，naive！';}">
-		 </form>
 
-		  <form class="yellow">
-               <input type="submit" value="Submit">
-			<input type="text" size="30px"  value="你们啊，naive！" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '你们啊，naive！';}">
+<body class=" login"
+  data-admin-utc-offset="0">
 
-		 </form>
-		 <form class="red">
-             <input type="submit" value="Submit">
-			<input type="text" size="30px"  value="你们啊，naive！" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '你们啊，naive！';}">
+<!-- Container -->
+<div id="container">
 
-		 </form>
 
-         <form class="purple">
-			<input type="submit" value="Submit">
-		 </form>
-	</div>
-	<!--start-copyright-->
-   		<div class="copy-right">
-   			<div class="wrap">
-				<p>2016 &copy 信息检索一颗赛艇 <a href="http://w3layouts.com/" target="_blank">  我只是来搞笑的 </a></p>
-		</div>
-	</div>
-	<!--//end-copyright-->
-		 		
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+
+<h1 id="site-name">使用以下条件来搜索网页...</h1>
+
+        </div>
+
+
+    </div>
+    <!-- END Header -->
+
+
+
+
+
+
+
+    <!-- Content -->
+    <div id="content" class="colM">
+
+
+
+
+
+
+
+<div id="content-main">
+
+
+
+<form action="/advanced-search/" method="get" id="login-form">
+    <input type='hidden' name='csrfmiddlewaretoken' value='gNto10ULlLLnl74Y5OhwumcZNS6Wggba' />
+
+      <div class="form-row">
+
+        <label class="required" for="id_username">以下所有字词:</label>
+          <input id="id_username" maxlength="254" name="and" type="text" />
+      </div>
+
+      <div class="form-row">
+
+        <label class="required" for="id_password">与以下字词完全匹配:</label> <input id="id_password" name="comp" type="text" />
+        <input type="hidden" name="next" value="" />
+      </div>
+
+      <div class="form-row">
+        <label class="required" for="id_password">以下任意字词:</label> <input id="id_password" name="or" type="text" />
+        <input type="hidden" name="next" value="" />
+      </div>
+
+      <div class="form-row">
+        <label class="required" for="id_password">不含以下任意字词:</label> <input id="id_password" name="not" type="text" />
+        <input type="hidden" name="next" value="" />
+      </div>
+
+      <div class="submit-row">
+        <label>&nbsp;</label><input type="submit" value="高级搜索" />
+      </div>
+</form>
+
+<script type="text/javascript">
+document.getElementById('id_username').focus()
+</script>
+</div>
+
+
+        <br class="clear" />
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
 </body>
 </html>
