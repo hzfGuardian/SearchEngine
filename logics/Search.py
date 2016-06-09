@@ -47,9 +47,9 @@ def search_inv_final(strand, strall, stror, strnot):
             continue
         and_list.append(word)
         and_list_co.append(correct(word))
-        for item in pydict.synonym(word):
-            or_list.append(str(item))
-            or_list_co.append(str(item))
+        #for item in pydict.synonym(word):
+         #   or_list.append(str(item))
+          #  or_list_co.append(str(item))
 
     for item in all_list_ori:
         newstr = ""
@@ -82,9 +82,9 @@ def search_inv_final(strand, strall, stror, strnot):
             continue
         or_list.append(word)
         or_list_co.append(correct(word))
-        for item in pydict.synonym(word):
-            or_list.append(str(item))
-            or_list_co.append(str(item))
+        #for item in pydict.synonym(word):
+         #   or_list.append(str(item))
+          #  or_list_co.append(str(item))
 
     for word in not_list_ori:
         if word in stopset:
