@@ -31,7 +31,7 @@
 						<div id="sr_infos" class="wrap sr_infoul">
 						</div>
                     </div>
-                    <div class="jg">获得约 0 条结果 （用时0.00 秒）</div>
+                    <div class="jg">获得约 13亿 条结果 （用时 3 天 3 夜）</div>
                 </div>
             </div>
             <div class="brd1s"></div>
@@ -70,18 +70,19 @@
                 </div>
                 <div class="c wrap">
                 	<ul class="wrap">
-						{% if matches %}
+						{% if res_list %}
                             <ul>
-                            {% for match in matches %}
+                            {% for res in res_list %}
                                 <hr />
                                 <div style="margin-bottom: 20px">
-                                    <p>Summary is: {{ summary }} </p>
-                                    <a href="{{match}}">The url</a>
+                                    <p>{{ res.docFile }} </p>
+                                    <p>{{ res.text }} </p>
+                                    <a href="{{res.docFile}}">完整文章..</a>
                                 </div>
                             {% endfor %}
                             </ul>
                         {% else %}
-                            <p> Sorry, Can't find any results! </p>
+                            <p> 不好意思,您搜索的页面在火星噢 </p>
                         {% endif %}
                     </ul>
                     <div id="pages" class="text-c mg_t20"></div>

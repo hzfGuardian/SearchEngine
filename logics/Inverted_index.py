@@ -13,7 +13,7 @@ for fn in glob.glob('../Reuters/' + os.sep + '*.html'):
      #print fn
      try:
           file_object = open(fn)
-          mydicts.file_id_record.append(fn)
+          mydicts.file_id_record.append(fn.lstrip('.').lstrip('/'))
           all_the_text = file_object.read()
           #print all_the_text
           alist=all_the_text.split(' ')

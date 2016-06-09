@@ -5,7 +5,10 @@
 from dictionary import *
 from corrector import *
 from PyDictionary import PyDictionary
+
 mydicts = Dictionary()
+
+pydict = PyDictionary()
 
 
 stopset = {"is", "a", "he", "she", "and", "are", "am", "of", "for", "were", "in", "it", "them", "its", "would", "share",
@@ -16,12 +19,15 @@ deleteset= {'\n', '\r', '>', '<', ')', '(', '\"', "\'", '&lt', '-', '+', '@', '%
 
 def search_inv_init():
     global mydicts
+    global pydict
     mydicts = Dictionary()
+    pydict = PyDictionary()
     mydicts.read_compress("test1", "test2", "test3")
 
 
 def search_inv_final(strand, strall, stror, strnot):
     global mydicts
+    global pydict
     and_list_ori = strand.split(' ')
     or_list_ori = stror.split(' ')
     not_list_ori = strnot.split(' ')
@@ -41,7 +47,7 @@ def search_inv_final(strand, strall, stror, strnot):
             continue
         and_list.append(word)
         and_list_co.append(correct(word))
-        for item in PyDictionary.dictionary.synonym(word):
+        for item in pydict.synonym(word):
             or_list.append(str(item))
             or_list_co.append(str(item))
 
@@ -76,7 +82,7 @@ def search_inv_final(strand, strall, stror, strnot):
             continue
         or_list.append(word)
         or_list_co.append(correct(word))
-        for item in PyDictionary.dictionary.synonym(word):
+        for item in pydict.synonym(word):
             or_list.append(str(item))
             or_list_co.append(str(item))
 
@@ -95,34 +101,30 @@ def search_inv_final(strand, strall, stror, strnot):
 
    # for fn in glob.glob('../Reuters/' + os.sep + '*.html'):
 
-    for item in file_id1:
-        fn = mydicts.file_id_record[item]
-        print fn
-
-    for item in file_id2:
-        fn = mydicts.file_id_record[item]
-        print fn
-
     strlist = []
     if(len(file_id2)-len(file_id1) > 10):
         for item in file_id2:
             fn = mydicts.file_id_record[item]
-            print fn
+
             try:
                 file_object = open(fn)
                 all_the_text = file_object.read()
-                strlist.append((fn, all_the_text[0,100]))
+                strlist.append((fn, all_the_text[0:100]))
+            except:
+                print fn
             finally:
                 file_object.close()
         return (1,strlist)
     else:
         for item in file_id1:
             fn = mydicts.file_id_record[item]
-            print fn
+
             try:
                 file_object = open(fn)
                 all_the_text = file_object.read()
-                strlist.append((fn, all_the_text[0,100]))
+                strlist.append((fn, all_the_text[0:100]))
+            except:
+                print fn
             finally:
                 file_object.close()
         return (0, strlist)
