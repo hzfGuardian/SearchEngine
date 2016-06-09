@@ -6,6 +6,7 @@ import struct
 
 class Dictionary:
     dict_in = {}
+    file_id_record = []
     count = 0
 
     # load inverted index from disk
@@ -88,10 +89,13 @@ class Dictionary:
         return ans
 
 
-    def write_compress(self, word_file_name, index_file_name):
+    def write_compress(self, word_file_name, index_file_name, file_id_name):
         try:
             wordfile = open(word_file_name, "wb")
             indexfile = open(index_file_name, "wb")
+            file_id_file = open(file_id_name, "wb")
+            for item in self.file_id_record:
+                file_id_file.write(item + "@")
             dic_list = self.sortdict()
             indexfile.write(self.mycompress(len(dic_list)))
             # wordlen = 0
@@ -111,11 +115,15 @@ class Dictionary:
         finally:
             wordfile.close()
             indexfile.close()
+            file_id_file.close()
 
-    def read_compress(self, word_file_name, index_file_name):
+    def read_compress(self, word_file_name, index_file_name, file_id_name):
         try:
             wordfile = open(word_file_name, "rb")
             indexfile = open(index_file_name, "rb")
+            file_id_file = open(file_id_name, "rb")
+            all_the_text = file_id_file.read()
+            self.file_id_record = all_the_text.split('@')
             all_word = wordfile.read()
             word_list = all_word.split('@')
             num = self.mydecompress(indexfile)
@@ -140,6 +148,7 @@ class Dictionary:
         finally:
             wordfile.close()
             indexfile.close()
+            file_id_file.close()
 
     # [[2, [1, 2, 6, 7]], [3, [3, 4]]] : [[doc_id1, [pos1, ...]], [doc_id2, [pos1, ...]]]
     def addItem(self, item, doc_id, pos):
@@ -167,16 +176,20 @@ class Dictionary:
                 result.append(myitem[0])
             return result
         else:
-            word_list=word.split(' ')
+            word_list = word.split(' ')
             index = 0
             temp = []
             result = []
             for word in word_list:
+                if word == "":
+                    continue
                 if word not in self.dict_in:
                     return result
 
             for word in word_list:
-                if (index==0):
+                if word == "":
+                    continue
+                if index == 0:
                     temp = self.dict_in[word]
                     index = index + 1
                     continue

@@ -38,6 +38,6 @@ def correct(word):
     candidates = known([word]) or known(edits1(word)) or known_edits2(word) or [word]
     return max(candidates, key=NWORDS.get)
 
-print correct("applo")
-print correct("engilsh")
-print correct("sruprise")
+#print correct("applo")
+#print correct("english")
+#print correct("sruprise")

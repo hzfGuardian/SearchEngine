@@ -6,7 +6,7 @@ import os
 
 fo = open("trainer", "w")
 
-for fn in glob.glob('Reuters/' + os.sep + '*.html'):
+for fn in glob.glob('../Reuters/' + os.sep + '*.html'):
         file_object = open(fn)
         all_the_text = file_object.read()
         fo.write(all_the_text)

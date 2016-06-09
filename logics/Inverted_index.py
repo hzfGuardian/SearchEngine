@@ -13,6 +13,7 @@ for fn in glob.glob('../Reuters/' + os.sep + '*.html'):
      #print fn
      try:
           file_object = open(fn)
+          mydicts.file_id_record.append(fn)
           all_the_text = file_object.read()
           #print all_the_text
           alist=all_the_text.split(' ')
@@ -36,19 +37,4 @@ for fn in glob.glob('../Reuters/' + os.sep + '*.html'):
           file_object.close()
 
 mydicts.count = filecount
-#print Dictionaries
-#mydicts.dict_in = sorted(mydicts.dict_in.iteritems(), key=lambda asd: asd[0])
-#mydicts.write("inverted_dict")
-#mydicts.addItem('a', 1, 3)
-'''dic_list=mydicts.sortdict()
-lon = len(dic_list)
-lon2 = len(mydicts.dict_in)
-for item in dic_list:
-    a = item[0]
-    b = item[1]
-    c= len(b)
-'''
-mydicts.write_compress("test1", "test2")
-
-#mydicts2 = Dictionary()
-#mydicts2.read("test.txt")
+mydicts.write_compress("test1", "test2", "test3")
