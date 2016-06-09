@@ -70,8 +70,10 @@ def search_inv_final(strand, strall, stror, strnot):
             else:
                 newstr = newstr + " " + word
                 newstr_co = newstr_co + " " + correct(word)
-        and_list.append(newstr)
-        and_list_co.append(correct(newstr_co))
+        if (newstr!=""):
+            and_list.append(newstr)
+        if (newstr_co != ""):
+            and_list_co.append(correct(newstr_co))
 
     for word in or_list_ori:
         if word in stopset:
@@ -100,7 +102,10 @@ def search_inv_final(strand, strall, stror, strnot):
     file_id2 = mydicts.search_invert(and_list_co, or_list_co, not_list_co)
 
    # for fn in glob.glob('../Reuters/' + os.sep + '*.html'):
-
+    print and_list, or_list, not_list
+    print and_list_co, or_list_co, not_list_co
+    print file_id1
+    print file_id2
     strlist = []
     if(len(file_id2)-len(file_id1) > 10):
         for item in file_id2:
