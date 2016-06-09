@@ -228,3 +228,5 @@ class Dictionary:
                 Resule_id = list(set(Resule_id).difference(set(self.serchaword(word_not))))  # must change
                 count_op = count_op + 1
         return Resule_id
+
+
