@@ -15,7 +15,7 @@ def search_inv_init():
 
 def search_inv_final(strand, strall, stror, strnot):
     global mydicts
-    add_list = []
+    add_list = ["apple"]
     or_list = []
     not_list = []
     

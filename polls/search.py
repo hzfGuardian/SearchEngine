@@ -21,7 +21,8 @@ def search1(request):
     request.encoding = 'utf-8'
 
     if 'q' in request.GET:
-        res_list = search_inv_final(request.GET['q'].encode('utf-8'))
+        res_list = search_inv_final(request.GET['q'].encode('utf-8'), [], [], [])
+        print res_list
         message = "docID: "
         for doc_id in res_list:
             message += str(doc_id) + " "
