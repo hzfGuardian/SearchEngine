@@ -50,8 +50,8 @@ def search1(request):
     return HttpResponse(message)
 
 
-def show_details(request):
-    return render_to_response('15920.html')
+def show_details(request, param):
+    return render_to_response('Reuters/' + param + '.html')
 
 
 def search(request):
