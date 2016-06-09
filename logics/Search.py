@@ -5,6 +5,7 @@
 from dictionary import *
 from corrector import *
 from PyDictionary import PyDictionary
+
 mydicts = Dictionary()
 
 
