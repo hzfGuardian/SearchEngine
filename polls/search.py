@@ -2,9 +2,11 @@
 
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
-from logics.buffer import f
+from logics.Search import search_inv_final
 
 # 表单
+
+
 def search_form(request):
     return render_to_response('single_search.html')
 
@@ -15,7 +17,7 @@ def search1(request):
     request.encoding = 'utf-8'
 
     if 'q' in request.GET:
-        res_list = f(request.GET['q'].encode('utf-8'))
+        res_list = search_inv_final(request.GET['q'].encode('utf-8'))
         message = "docID: "
         for doc_id in res_list:
             message += str(doc_id) + " "
