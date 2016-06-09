@@ -10,6 +10,10 @@ def search_form(request):
     return render_to_response('single_search.html')
 
 
+def advanced_search_form(request):
+    return render_to_response('advanced_search.html')
+
+
 # 接收请求数据
 def search1(request):
 

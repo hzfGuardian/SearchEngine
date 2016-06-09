@@ -24,5 +24,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^search/$', polls.search.search),
     url(r'^search-form/$', polls.search.search_form),
-    url(r'.html$', polls.search.show_details)
+    url(r'.html$', polls.search.show_details),
+    url(r'^advanced-search/$', polls.search.advanced_search_form)
 ]
