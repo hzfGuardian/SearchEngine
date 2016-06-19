@@ -6,13 +6,14 @@ import numpy as np
 
 
 class VSM:
-
+    dos_len = 0
     matrix = np.zeros
     dic = {}
     sort_dic = {}   # record the sort id for each item
 
     def __init__(self, docs, dicts):
         self.dic = dicts
+        self.dos_len = docs
         self.matrix = np.zeros((len(dicts), docs))
         dicts = sorted(dicts.iteritems(), key=lambda asd: asd[0])
 
@@ -59,7 +60,8 @@ class VSM:
                 vq[row_id] = 1
         return vq
 
-    def cosineScore(self, query, doc_id):
+    def cosineScore(self, word_list, doc_id):
+        query = Query(word_list)
         vq = self.qryVector(query)
         vd = self.matrix[:, doc_id]
         if np.linalg.norm(vq) == 0 or np.linalg.norm(vd, 2) == 0:
@@ -67,9 +69,13 @@ class VSM:
         else:
             return np.inner(vq, vd) / (np.linalg.norm(vq) * np.linalg.norm(vd, 2))
 
+    def getTopK(self, word_list, k):
+        file_id = []
+        for i in range(0, self.dos_len):
+            file_id.append(self.cosineScore(word_list, i))
 
-    def getTopK(self, k):
-        return
+        file_id = sorted(file_id.iteritems(), key=lambda asd: asd[0])
+        return file_id[0:k]
 
 
 

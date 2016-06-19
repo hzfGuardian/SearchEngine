@@ -4,6 +4,7 @@
 
 from dictionary import *
 from corrector import *
+from vsm import *
 from PyDictionary import PyDictionary
 
 mydicts = Dictionary()
@@ -20,9 +21,29 @@ deleteset= {'\n', '\r', '>', '<', ')', '(', '\"', "\'", '&lt', '-', '+', '@', '%
 def search_inv_init():
     global mydicts
     global pydict
+    global myvsm
     mydicts = Dictionary()
     pydict = PyDictionary()
     mydicts.read_compress("test1", "test2", "test3")
+    myvsm = VSM(mydicts.count, mydicts.dict_in)
+
+def search_vsm(word_list):
+    global mydicts
+    global pydict
+    global myvsm
+    file_id = myvsm.getTopK(word_list, 20)
+    strlist = []
+    for item in file_id:
+        fn = mydicts.file_id_record[item]
+        try:
+            file_object = open(fn)
+            all_the_text = file_object.read()
+            strlist.append((fn, all_the_text[0:300].replace("&lt;", "<")))
+        except:
+            print fn
+        finally:
+            file_object.close()
+    return (0, strlist)
 
 
 def search_inv_final(similar_tag, strand, strall, stror, strnot):
