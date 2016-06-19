@@ -121,12 +121,12 @@ def search_inv_final(similar_tag, strand, strall, stror, strnot):
             try:
                 file_object = open(fn)
                 all_the_text = file_object.read()
-                strlist.append((fn, all_the_text[0:300].replace("&lt;", "<")))
+                strlist.append((fn, all_the_text[0:200].replace("&lt;", "<")))
             except:
                 print fn
             finally:
                 file_object.close()
-        return (1,strlist)
+        return (1, strlist)
     else:
         for item in file_id1:
             fn = mydicts.file_id_record[item]
@@ -134,7 +134,7 @@ def search_inv_final(similar_tag, strand, strall, stror, strnot):
             try:
                 file_object = open(fn)
                 all_the_text = file_object.read()
-                strlist.append((fn, all_the_text[0:300].replace("&lt;", "<")))
+                strlist.append((fn, all_the_text[0:200].replace("&lt;", "<")))
             except:
                 print fn
             finally:

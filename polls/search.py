@@ -17,37 +17,13 @@ class Res:
 
 
 def search_form(request):
-    return render_to_response('single_search.html')
+    if 'vsm' in request.GET and request.GET['vsm']:
+        s1 = request.GET['vsm'].encode('utf-8')
+    return render_to_response('result.html')
 
 
 def advanced_search_form(request):
     return render_to_response('advanced_search.html')
-
-
-# 接收请求数据
-def search1(request):
-
-    request.encoding = 'utf-8'
-
-    if 'and' in request.GET:
-        s1 = request.GET['and'].encode('utf-8')
-    if 'q' in request.GET:
-        s1 = request.GET['q'].encode('utf-8')
-    if 'q' in request.GET:
-        s1 = request.GET['q'].encode('utf-8')
-    if 'q' in request.GET:
-        s1 = request.GET['q'].encode('utf-8')
-        res_list = search_inv_final(request.GET['q'].encode('utf-8'), [], [], [])
-        print res_list
-        message = "docID: "
-        for doc_id in res_list:
-            message += str(doc_id) + " "
-        if len(res_list) == 0:
-            message += "nothing found"
-    else:
-        message = '你提交了空表单'
-
-    return HttpResponse(message)
 
 
 def show_details(request, param):
@@ -55,17 +31,7 @@ def show_details(request, param):
 
 
 def search(request):
-
-    total = 0
-    t = 0
-    s = 0
-    res = ['15920.html', '15920.html', '15920.html']
-
-    if 'q' in request.GET and request.GET['q']:
-        return render_to_response('result.html',
-                                  {'total_found': total, 'use_time': t, 'summary': s, 'matches': res})
-    else:
-        return render_to_response('single_search.html', {'error': True})
+    return render_to_response('single_search.html')
 
 
 def adv_search(request):
@@ -87,6 +53,8 @@ def adv_search(request):
         s4 = request.GET['not'].encode('utf-8')
     if 'check' in request.GET and request.GET['check']:
         similar_tag = request.GET['check'].encode('utf-8')
+    if 'search' in request.GET and request.GET['search']:
+        s1 = request.GET['search'].encode('utf-8')
 
     if s1 != "" or s2 != "" or s3 != "" or s4 != "":
         res_tuple = search_inv_final(similar_tag, s1, s2, s3, s4)
