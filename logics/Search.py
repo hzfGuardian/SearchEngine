@@ -121,7 +121,7 @@ def search_inv_final(similar_tag, strand, strall, stror, strnot):
             try:
                 file_object = open(fn)
                 all_the_text = file_object.read()
-                strlist.append((fn, all_the_text[0:100]))
+                strlist.append((fn, all_the_text[0:300].replace("&lt;", "<")))
             except:
                 print fn
             finally:
@@ -134,7 +134,7 @@ def search_inv_final(similar_tag, strand, strall, stror, strnot):
             try:
                 file_object = open(fn)
                 all_the_text = file_object.read()
-                strlist.append((fn, all_the_text[0:100]))
+                strlist.append((fn, all_the_text[0:300].replace("&lt;", "<")))
             except:
                 print fn
             finally:

@@ -95,9 +95,10 @@ def adv_search(request):
         for rest in res_tuple[1]:
             res = Res(rest[0], rest[1])
             res_list += [res]
+            print res.text
 
         num = len(res_list)
-
+        # print
         return render_to_response('result.html', {'tag': res_tuple[0], 'res_list': res_list, 'num': num})
 
     # res_tuple = (tag, [(filename1, text1), (filename2, text2), ...])
