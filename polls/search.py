@@ -2,7 +2,7 @@
 
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
-from logics.Search import search_inv_final
+from logics.Search import search_inv_final, search_vsm
 
 
 # 表单
@@ -17,9 +17,22 @@ class Res:
 
 
 def search_form(request):
+    print "go here hahahahah"
     if 'vsm' in request.GET and request.GET['vsm']:
-        s1 = request.GET['vsm'].encode('utf-8')
-    return render_to_response('result.html')
+        s = request.GET['vsm'].encode('utf-8')
+        res_tuple = search_vsm(s)
+        res_list = []
+
+        for rest in res_tuple[1]:
+            res = Res(rest[0], rest[1])
+            res_list += [res]
+            print res.text
+
+        num = len(res_list)
+        # print
+        return render_to_response('result.html', {'tag': res_tuple[0], 'res_list': res_list, 'num': num})
+    else:
+        return render_to_response('result.html', {'error': True})
 
 
 def advanced_search_form(request):
