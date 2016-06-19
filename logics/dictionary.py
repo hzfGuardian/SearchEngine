@@ -130,7 +130,7 @@ class Dictionary:
             if num != (len(word_list)-1):  # jian qu zuihou yige word
                 print("File ERROR!")
                 return
-            self.count = num
+            self.count = len(self.file_id_record) - 1
             for i in range(0, num):
                 id_list = []
                 file_len = self.mydecompress(indexfile)

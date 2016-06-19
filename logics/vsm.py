@@ -74,7 +74,8 @@ class VSM:
         for i in range(0, self.dos_len):
             file_id.append(self.cosineScore(word_list, i))
 
-        file_id = sorted(file_id.iteritems(), key=lambda asd: asd[0])
+        # file_id = sorted(file_id.iteritems(), key=lambda asd: asd[0])
+        file_id.sort(None, None, True)
         return file_id[0:k]
 
 
