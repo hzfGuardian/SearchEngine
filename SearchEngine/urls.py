@@ -25,6 +25,6 @@ urlpatterns = [
     url(r'^search/$', polls.search.search1),
     url(r'^search-form/$', polls.search.search_form),
     url(r'^Reuters/(.+).html$', polls.search.show_details),
-    url(r'^advanced-search-form/$', polls.search.advanced_search_form),
+    url(r'^asearch/$', polls.search.advanced_search_form),
     url(r'^advanced-search/$', polls.search.adv_search)
 ]

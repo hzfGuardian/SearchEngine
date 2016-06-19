@@ -75,6 +75,8 @@ def adv_search(request):
     s3 = ""
     s4 = ""
 
+    similar_tag = 0  # use similar search
+
     if 'and' in request.GET and request.GET['and']:
         s1 = request.GET['and'].encode('utf-8')
     if 'comp' in request.GET and request.GET['comp']:
@@ -83,15 +85,20 @@ def adv_search(request):
         s3 = request.GET['or'].encode('utf-8')
     if 'not' in request.GET and request.GET['not']:
         s4 = request.GET['not'].encode('utf-8')
+    if 'check' in request.GET and request.GET['check']:
+        similar_tag = request.GET['check'].encode('utf-8')
 
     if s1 != "" or s2 != "" or s3 != "" or s4 != "":
-        res_tuple = search_inv_final(s1, s2, s3, s4)
+        res_tuple = search_inv_final(similar_tag, s1, s2, s3, s4)
         res_list = []
+
         for rest in res_tuple[1]:
             res = Res(rest[0], rest[1])
             res_list += [res]
 
-        return render_to_response('result.html', {'tag': res_tuple[0], 'res_list': res_list})
+        num = len(res_list)
+
+        return render_to_response('result.html', {'tag': res_tuple[0], 'res_list': res_list, 'num': num})
 
     # res_tuple = (tag, [(filename1, text1), (filename2, text2), ...])
     # tag == 1: 矫正后高

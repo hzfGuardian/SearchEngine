@@ -25,7 +25,7 @@ def search_inv_init():
     mydicts.read_compress("test1", "test2", "test3")
 
 
-def search_inv_final(strand, strall, stror, strnot):
+def search_inv_final(similar_tag, strand, strall, stror, strnot):
     global mydicts
     global pydict
     and_list_ori = strand.split(' ')
@@ -47,9 +47,11 @@ def search_inv_final(strand, strall, stror, strnot):
             continue
         and_list.append(word)
         and_list_co.append(correct(word))
-        #for item in pydict.synonym(word):
-         #   or_list.append(str(item))
-          #  or_list_co.append(str(item))
+        if similar_tag == '1':
+            print "helloappend"
+            for item in pydict.synonym(word):
+                or_list.append(str(item))
+                or_list_co.append(str(item))
 
     for item in all_list_ori:
         newstr = ""
@@ -84,9 +86,11 @@ def search_inv_final(strand, strall, stror, strnot):
             continue
         or_list.append(word)
         or_list_co.append(correct(word))
-        #for item in pydict.synonym(word):
-         #   or_list.append(str(item))
-          #  or_list_co.append(str(item))
+
+        if similar_tag == "1":
+            for item in pydict.synonym(word):
+                or_list.append(str(item))
+                or_list_co.append(str(item))
 
     for word in not_list_ori:
         if word in stopset:
@@ -98,14 +102,17 @@ def search_inv_final(strand, strall, stror, strnot):
         not_list.append(word)
         not_list_co.append(correct(word))
 
+    print "length of or list:"
+    print len(or_list)
+
     file_id1 = mydicts.search_invert(and_list, or_list, not_list)
     file_id2 = mydicts.search_invert(and_list_co, or_list_co, not_list_co)
 
-   # for fn in glob.glob('../Reuters/' + os.sep + '*.html'):
-    print and_list, or_list, not_list
-    print and_list_co, or_list_co, not_list_co
-    print file_id1
-    print file_id2
+    # for fn in glob.glob('../Reuters/' + os.sep + '*.html'):
+    # print and_list, or_list, not_list
+    # print and_list_co, or_list_co, not_list_co
+    # print file_id1
+    # print file_id2
     strlist = []
     if(len(file_id2)-len(file_id1) > 10):
         for item in file_id2:

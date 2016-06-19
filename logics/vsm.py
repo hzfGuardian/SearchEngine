@@ -69,6 +69,7 @@ class VSM:
 
 
     def getTopK(self, k):
+        return
 
 
 
