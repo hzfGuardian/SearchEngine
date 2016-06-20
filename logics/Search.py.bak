@@ -56,8 +56,6 @@ def search_vsm(word_str):
 	strlist = []
     if(len(file_id2)-len(file_id1) > 10):
         for item in file_id2:
-			if item == -1:
-				continue
             fn = mydicts.file_id_record[item]
 
             try:
@@ -71,8 +69,6 @@ def search_vsm(word_str):
         return (1, strlist)
     else:
         for item in file_id1:
-			if item == -1:
-				continue
             fn = mydicts.file_id_record[item]
 
             try:
