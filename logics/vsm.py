@@ -60,20 +60,29 @@ class VSM:
                 vq[row_id] = 1
         return vq
 
-    def cosineScore(self, word_list, doc_id):
-        query = Query(word_list)
-        vq = self.qryVector(query)
-        vd = self.matrix[:, doc_id]
-        if np.linalg.norm(vq) == 0 or np.linalg.norm(vd, 2) == 0:
+    def cosineScore(self, id_word_list, doc_id):
+        valid_vd = []
+        for item in id_word_list:
+            valid_vd.append(self.matrix[item, doc_id])
+
+        if np.linalg.norm(valid_vd) == 0 or len(id_word_list) == 0:
             return 0
         else:
-            return np.inner(vq, vd) / (np.linalg.norm(vq) * np.linalg.norm(vd, 2))
+            return np.linalg.norm(valid_vd, 1) / (np.linalg.norm(valid_vd, 2) * np.sqrt(len(id_word_list)))
 
     def getTopK(self, word_list, k):
         score_list = []
         print word_list
+
+        # note all id s of the word list
+        id_word_list = []
+        for item in word_list:
+            id_word_list.append(word_list.index(item))
+
+        print id_word_list
+
         for i in range(0, self.dos_len):
-            score_list.append(self.cosineScore(word_list, i))
+            score_list.append(self.cosineScore(id_word_list, i))
 
         # print score_list
         # file_id = sorted(file_id.iteritems(), key=lambda asd: asd[0])

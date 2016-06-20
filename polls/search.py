@@ -3,6 +3,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from logics.Search import search_inv_final, search_vsm
+import time
 
 
 # 表单
@@ -17,7 +18,7 @@ class Res:
 
 
 def search_form(request):
-    print "go here hahahahah"
+    s_time = time.time()
     if 'vsm' in request.GET and request.GET['vsm']:
         s = request.GET['vsm'].encode('utf-8')
         res_tuple = search_vsm(s)
@@ -29,8 +30,9 @@ def search_form(request):
             print res.text
 
         num = len(res_list)
+        e_time = time.time()
         # print
-        return render_to_response('result.html', {'tag': res_tuple[0], 'res_list': res_list, 'num': num})
+        return render_to_response('result.html', {'tag': res_tuple[0], 'res_list': res_list, 'num': num, 'time': e_time - s_time})
     else:
         return render_to_response('result.html', {'error': True})
 
@@ -49,6 +51,7 @@ def search(request):
 
 def adv_search(request):
 
+    s_time = time.time()
     s1 = ""
     s2 = ""
     s3 = ""
@@ -80,7 +83,9 @@ def adv_search(request):
 
         num = len(res_list)
         # print
-        return render_to_response('result.html', {'tag': res_tuple[0], 'res_list': res_list, 'num': num})
+        e_time = time.time()
+        # print e_time - s_time
+        return render_to_response('result.html', {'tag': res_tuple[0], 'res_list': res_list, 'num': num, 'time': e_time - s_time})
 
     # res_tuple = (tag, [(filename1, text1), (filename2, text2), ...])
     # tag == 1: 矫正后高
