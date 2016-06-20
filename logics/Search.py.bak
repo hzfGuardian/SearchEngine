@@ -27,10 +27,12 @@ def search_inv_init():
     mydicts.read_compress("test1", "test2", "test3")
     myvsm = VSM(mydicts.count, mydicts.dict_in)
 
-def search_vsm(word_list):
+def search_vsm(word_str):
     global mydicts
     global pydict
     global myvsm
+	word_list = []
+	word_list = word_str.split(' ')
     file_id = myvsm.getTopK(word_list, 20)
     strlist = []
     for item in file_id:
@@ -69,7 +71,6 @@ def search_inv_final(similar_tag, strand, strall, stror, strnot):
         and_list.append(word)
         and_list_co.append(correct(word))
         if similar_tag == '1':
-            print "helloappend"
             for item in pydict.synonym(word):
                 or_list.append(str(item))
                 or_list_co.append(str(item))

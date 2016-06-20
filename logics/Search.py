@@ -32,20 +32,53 @@ def search_vsm(word_str):
     global pydict
     global myvsm
 	word_list = []
-	word_list = word_str.split(' ')
-    file_id = myvsm.getTopK(word_list, 20)
-    strlist = []
-    for item in file_id:
-        fn = mydicts.file_id_record[item]
-        try:
-            file_object = open(fn)
-            all_the_text = file_object.read()
-            strlist.append((fn, all_the_text[0:300].replace("&lt;", "<")))
-        except:
-            print fn
-        finally:
-            file_object.close()
-    return (0, strlist)
+	word_list_co = []
+	word_list_ori = []
+
+	word_list_ori = word_str.split(' ')
+	for word in word_list_ori:
+        if word in stopset:
+            continue
+        for item in deleteset:
+            word = word.replace(item, '')
+        if word == "":
+            continue
+        word_list.append(word)
+        word_list_co.append(correct(word))
+
+
+	file_id1 = []
+	file_id2 = []
+    file_id1 = myvsm.getTopK(word_list, 20)
+	file_id2 = myvsm.getTopK(word_list_co, 20)
+
+	strlist = []
+    if(len(file_id2)-len(file_id1) > 10):
+        for item in file_id2:
+            fn = mydicts.file_id_record[item]
+
+            try:
+                file_object = open(fn)
+                all_the_text = file_object.read()
+                strlist.append((fn, all_the_text[0:200].replace("&lt;", "<")))
+            except:
+                print fn
+            finally:
+                file_object.close()
+        return (1, strlist)
+    else:
+        for item in file_id1:
+            fn = mydicts.file_id_record[item]
+
+            try:
+                file_object = open(fn)
+                all_the_text = file_object.read()
+                strlist.append((fn, all_the_text[0:200].replace("&lt;", "<")))
+            except:
+                print fn
+            finally:
+                file_object.close()
+        return (0, strlist)
 
 
 def search_inv_final(similar_tag, strand, strall, stror, strnot):
@@ -71,7 +104,6 @@ def search_inv_final(similar_tag, strand, strall, stror, strnot):
         and_list.append(word)
         and_list_co.append(correct(word))
         if similar_tag == '1':
-            print "helloappend"
             for item in pydict.synonym(word):
                 or_list.append(str(item))
                 or_list_co.append(str(item))
