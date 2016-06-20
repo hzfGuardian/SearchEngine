@@ -31,6 +31,7 @@ class VSM:
                     self.matrix[i, doc_id] = (1 + math.log10(tf * 1.0)) * idf
                 else:
                     self.matrix[i, doc_id] = 0
+        # print self.sort_dic
         return
 
     def createSortedDict(self, dicts):
@@ -72,14 +73,17 @@ class VSM:
 
     def getTopK(self, word_list, k):
         score_list = []
-        print word_list
+        print ["Hello Here", word_list, self.sort_dic['company']]
 
         # note all id s of the word list
         id_word_list = []
         for item in word_list:
-            id_word_list.append(word_list.index(item))
+            print item
+            if item in self.sort_dic:
+                print self.sort_dic[item]
+                id_word_list.append(self.sort_dic[item])
 
-        print id_word_list
+        print ["Hello World", id_word_list]
 
         for i in range(0, self.dos_len):
             score_list.append(self.cosineScore(id_word_list, i))
@@ -97,7 +101,7 @@ class VSM:
                 file_id[index] = count
                 score_id[index] = score
             count = count + 1
-        print score_id
+        # print score_id
         return file_id
 
 

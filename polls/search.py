@@ -27,12 +27,12 @@ def search_form(request):
         for rest in res_tuple[1]:
             res = Res(rest[0], rest[1])
             res_list += [res]
-            print res.text
+            # print res.text
 
         num = len(res_list)
         e_time = time.time()
         # print
-        return render_to_response('result.html', {'tag': res_tuple[0], 'res_list': res_list, 'num': num, 'time': e_time - s_time})
+        return render_to_response('result.html', {'tag': res_tuple[0], 'res_list': res_list, 'num': num, 'time': "%.3f" % (e_time - s_time)})
     else:
         return render_to_response('result.html', {'error': True})
 
@@ -79,13 +79,13 @@ def adv_search(request):
         for rest in res_tuple[1]:
             res = Res(rest[0], rest[1])
             res_list += [res]
-            print res.text
+            # print res.text
 
         num = len(res_list)
         # print
         e_time = time.time()
-        # print e_time - s_time
-        return render_to_response('result.html', {'tag': res_tuple[0], 'res_list': res_list, 'num': num, 'time': e_time - s_time})
+
+        return render_to_response('result.html', {'tag': res_tuple[0], 'res_list': res_list, 'num': num, 'time': "%.3f" % (e_time - s_time)})
 
     # res_tuple = (tag, [(filename1, text1), (filename2, text2), ...])
     # tag == 1: 矫正后高
