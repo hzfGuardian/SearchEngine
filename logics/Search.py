@@ -31,6 +31,7 @@ def search_vsm(word_str):
     global mydicts
     global pydict
     global myvsm
+
 	word_list = []
 	word_list_co = []
 	word_list_ori = []
