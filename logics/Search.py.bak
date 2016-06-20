@@ -27,12 +27,10 @@ def search_inv_init():
     mydicts.read_compress("test1", "test2", "test3")
     myvsm = VSM(mydicts.count, mydicts.dict_in)
 
-def search_vsm(word_str):
+def search_vsm(word_list):
     global mydicts
     global pydict
     global myvsm
-	word_list = []
-	word_list = word_str.split(' ')
     file_id = myvsm.getTopK(word_list, 20)
     strlist = []
     for item in file_id:
