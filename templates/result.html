@@ -25,7 +25,7 @@
 						<form name="search" action="/advanced-search/" type="get">
                         <div class="sr_frmipt">
 
-						<input type="text" name="q" class="ipt" id="q" value="搜索" action="/advanced-search/" method="get" align = center>
+						<input type="text" name="search" class="ipt" id="q" value="搜索" action="/advanced-search/" method="get" align = center>
 						<div class="sp" id="aca">▼</div><input type="submit" class="ss_btn" value="搜 索"></div>
 						</form>
 						<div id="sr_infos" class="wrap sr_infoul">
@@ -44,8 +44,8 @@
                             {% for res in res_list %}
                                 <hr />
                                 <div style="margin-bottom: 20px">
-                                    <p align="left">{{ res.docFile }} </p>
-                                    <p>{{ res.text }} </p>
+                                    <p align="left"> <font color="blue">{{ res.docFile }} </font></p>
+                                    <p><font color="black">{{ res.text }} </font></p>
                                     <a align="left" href="/{{res.docFile}}">完整文章..</a>
                                 </div>
                             {% endfor %}

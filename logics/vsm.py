@@ -69,14 +69,15 @@ class VSM:
         else:
             return np.inner(vq, vd) / (np.linalg.norm(vq) * np.linalg.norm(vd, 2))
 
-
     def getTopK(self, word_list, k):
         score_list = []
+        print word_list
         for i in range(0, self.dos_len):
             score_list.append(self.cosineScore(word_list, i))
 
-		print score_list
+        # print score_list
         # file_id = sorted(file_id.iteritems(), key=lambda asd: asd[0])
+
         file_id = [-1 for x in range(0, k)]
         score_id = [-1 for x in range(0, k)]
         count = 0
@@ -87,6 +88,7 @@ class VSM:
                 file_id[index] = count
                 score_id[index] = score
             count = count + 1
+        print score_id
         return file_id
 
 
