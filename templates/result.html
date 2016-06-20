@@ -31,7 +31,12 @@
 						<div id="sr_infos" class="wrap sr_infoul">
 						</div>
                     </div>
-                    <div class="jg">获得约 {{ num }} 条结果 用时 {{ time }} 秒 </div>
+                    <div class="jg">
+                        获得约 {{ num }} 条结果 用时 {{ time }} 秒
+                        {% if tag == 1 %}
+                            <p> 您输入的单词可能有误, 以下显示为您智能矫正后的结果。</p>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
             <div class="brd1s"></div>
@@ -59,12 +64,7 @@
             </div>
       </div>
 <script type="text/javascript" src="http://v9.demo.phpcms.cn/statics/js/search_history.js"></script>
-<div class="sr_footer">	  
-<a href="http://v9.demo.phpcms.cn/html/about/aboutus/" target="_blank">关于我们</a> |  
-<a href="http://v9.demo.phpcms.cn/html/about/contactus/" target="_blank">联系方式</a> |  
-<a href="http://v9.demo.phpcms.cn/index.php?m=content&c=index&a=lists&catid=4" target="_blank">版权声明</a> |  
-<a href="http://v9.demo.phpcms.cn/html/about/hr/" target="_blank">招聘信息</a> |  
-<a href="http://v9.demo.phpcms.cn/index.php?m=link" target="_blank">友情链接</a>
+<div class="sr_footer">
 <p class="cp">Powered by <strong><a href="http://www.grandcloud.cn/product/video" target="_blank">浙大信息检索是门好课</a></strong> &copy; 2016 <img src="http://v9.demo.phpcms.cn/statics/images/copyright.gif"/>
 </p></div>
       </div>
