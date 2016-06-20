@@ -100,8 +100,8 @@ class VSM:
                 score_id[index] = score
             count = count + 1
         # print score_id
-		count = 0
-		for score in score_id:
+        count = 0
+        for score in score_id:
 			if score <= 0:
 				file_id[count] = -1
 			count = count + 1;

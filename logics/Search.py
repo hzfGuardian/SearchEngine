@@ -32,12 +32,12 @@ def search_vsm(word_str):
     global pydict
     global myvsm
 
-	word_list = []
-	word_list_co = []
-	word_list_ori = []
+    word_list = []
+    word_list_co = []
+    word_list_ori = []
 
-	word_list_ori = word_str.split(' ')
-	for word in word_list_ori:
+    word_list_ori = word_str.split(' ')
+    for word in word_list_ori:
         if word in stopset:
             continue
         for item in deleteset:
@@ -51,13 +51,13 @@ def search_vsm(word_str):
 	file_id1 = []
 	file_id2 = []
     file_id1 = myvsm.getTopK(word_list, 20)
-	file_id2 = myvsm.getTopK(word_list_co, 20)
+    file_id2 = myvsm.getTopK(word_list_co, 20)
 
-	strlist = []
+    strlist = []
     if(len(file_id2)-len(file_id1) > 10):
         for item in file_id2:
-			if item == -1:
-				continue
+            if item == -1:
+                continue
             fn = mydicts.file_id_record[item]
 
             try:
@@ -71,8 +71,8 @@ def search_vsm(word_str):
         return (1, strlist)
     else:
         for item in file_id1:
-			if item == -1:
-				continue
+            if item == -1:
+                continue
             fn = mydicts.file_id_record[item]
 
             try:
