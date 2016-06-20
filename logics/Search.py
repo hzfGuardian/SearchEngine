@@ -31,8 +31,9 @@ def search_vsm(word_str):
     global mydicts
     global pydict
     global myvsm
-	word_list = []
-	word_list = word_str.split(' ')
+
+    # word_list = []
+    word_list = word_str.split(' ')
     file_id = myvsm.getTopK(word_list, 20)
     strlist = []
     for item in file_id:

@@ -73,14 +73,12 @@ class VSM:
 
     def getTopK(self, word_list, k):
         score_list = []
-        print ["Hello Here", word_list, self.sort_dic['company']]
+        # print ["Hello Here", word_list, self.sort_dic['company']]
 
         # note all id s of the word list
         id_word_list = []
         for item in word_list:
-            print item
             if item in self.sort_dic:
-                print self.sort_dic[item]
                 id_word_list.append(self.sort_dic[item])
 
         print ["Hello World", id_word_list]
